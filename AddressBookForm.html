@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width", initial-scale=" 1.0">
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,600;1,500&display=swap"rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600 &display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="AddressBookStyleSheet.css">
+        <title>Address Book App</title>
+        <script src="AddressBookApp.js"></script>
+        <script src="siteProperty.js"></script>
+    </head>
+    <body>
+        <header class="header-content header">
+            <div class="logo-content">
+                <img src="../Assets/icons8-address-book-2-48.png" alt="">
+                <div>
+                    <span class="book-text">ADDRESS</span><br>
+                    <span class="second-text">BOOK</span>
+                </div>
+            </div>
+        </header>
+        <div id="formId" class="form-content">
+            <form class="form" action="#" onsubmit="save();return false" onreset="resetForm()">
+            <div class="form-head">Person Address Form
+                 <a href="AddressBookHome.html" class="add_button">
+                    <img src="../Assets/New folder/close (2).png" alt="">
+                </a>
+            </div>
+            <div class="row-content">
+                <input class="input" type="text" id="text" name="text" placeholder="Full Name" required>
+                <error-output class="text-error" for="text"></error-output>
+            </div>
+            <div class="row-content">
+                <input class="input" type="adderss" id="address" name="address" placeholder="Address" required>
+                <error-output class="address-error" for="address"></error-output>
+            </div>
+            <div class="row-content">
+                <div class="position">
+                <div>
+                    <select name="city" id="city" >
+                    <option value="1">Select City</option>
+                    <option value="Chennai">Chennai</option>
+                    <option value="Chennai">Madurai</option>
+                    <option value="Trichy">Trichy</option>
+                    <option value="Perambalur">Perambalur</option>
+                    <option value="Tenkasi">Tenkasi</option>
+                    <option value="Villupuram">Villupuram</option>
+                    <option value="Erode">Erode</option>
+                    </select>
+                </div>
+                </div>
+                <div class="position">
+                <div>
+                    <select name="state" id="state">
+                    <option value="1">Select State</option>
+                    <option value="Andhra">Andhra</option>
+                    <option value="Karnataka">Karnataka</option>
+                    <option value="Mumbai">Mumbai</option>
+                    <option value="Delhi">Delhi</option>
+                    </select>
+                </div>
+                </div>
+                <div class="position">
+                <div>
+                    <input class="input" type="text" id="zip" name="zip" placeholder="Zip" required>
+                </div>
+                </div>
+            </div>
+            <div class="row-content">
+                 <input class="input" type="number" id="number" name="number" placeholder="Phone Number" required>
+                <error-output class="number-error" for="number"></error-output>
+            </div>
+                <div class="buttonParent">
+                    <div class="submit-reset">
+                        <button type="submit" class="button addButton" id="addButton">Add</button>
+                        <button type="reset" class="resetButton button" id="resetButton">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+     <script>   
+    
+        const text = document.querySelector('#text');
+        const textError = document.querySelector('.text-error');
+        text.addEventListener('input',function(){
+            let nameRegex = RegExp('^[A-Z]{1}[a-z]{2,}$')
+            if(nameRegex.test(text.value))
+            textError.textContent = "";
+            else textError.textContent = "Name is Incorrect";
+        });
+
+        const address = document.querySelector('#address');
+        const addressError = document.querySelector('.address-error');
+        address.addEventListener('input',function(){
+            let addressRegex = RegExp("[A-Za-z0-9'\.\-\s\,]{3,}");
+            if(addressRegex.test(address.value))
+            addressError.textContent = "";
+            else addressError.textContent = "Address is Incorrect";
+        });
+
+        const number = document.querySelector('#number');
+        const numberError = document.querySelector('.number-error');
+        number.addEventListener('input',function(){
+            let numberRegex = RegExp("(91)[6-9][0-9]{9}");
+            if(numberRegex.test(number.value))
+            numberError.textContent = "";
+            else numberError.textContent = "Number is Incorrect";
+        });
+    </script>
+    </body>
+</html>
